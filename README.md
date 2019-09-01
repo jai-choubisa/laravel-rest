@@ -14,6 +14,7 @@ Small Project on laravel 5.8 Rest Api with third party APIs and feature tests
     b. http://localhost:8000/api/get-details?sourceId=comics&comicId=77  <br>
 5. I have used Spatie\ResponseCache library for caching of responses and added it to "/api/details" route. This will cache API request for 7 days(by default) and call "/api/details" GET request with same data only once and return cache data afterwords.
 To clear cache use terminal code - "php artisan responsecache:clear".
+6. Run Laravel PHPUnit Testing using terminal command - "./vendor/phpunit/phpunit/phpunit"
     
 ## Code Details
 1. <b>/tests/Feature/DetailsFeatureTest.php</b> - Feature Test for API request "/api/details" <br>
