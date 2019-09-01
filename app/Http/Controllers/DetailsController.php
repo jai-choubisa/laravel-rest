@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\DetailRequest;
 use Carbon\Carbon;
-use GuzzleHttp\Client;
 
 class DetailsController extends Controller
 {
@@ -43,10 +42,16 @@ class DetailsController extends Controller
      */
     public function getDetails(string $url) : string
     {
-        $client = new Client();
-        $response = $client->get($url);
-        $data = $response->getBody()->getContents();
-        return $data;
+        try 
+        {
+            $client = new \GuzzleHttp\Client();
+            $response = $client->get($url);
+            $data = $response->getBody()->getContents();
+            return $data;
+        } catch (\Exception $ex) 
+        {
+            abort(404, 'Unable To Call Third Party Api Request');
+        }
     }
 
     /**
